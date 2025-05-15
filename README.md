@@ -96,30 +96,115 @@ Es un paradigma de la programación que enfatiza el uso de construcciones de flu
   -  Mejora el código con revisiones periódicas.
   -  Elimina redundancias y mejora la claridad.
 
-**Ejemplo - Programación Estructural**
 
-function sumar(a, b) {
-  return a + b;
+
+# Principios de la Programación Estructurada
+
+Los principios fundamentales de la programación estructurada son reglas de diseño que buscan mejorar la claridad, calidad y mantenibilidad del código. Estos son los pilares esenciales:
+1. **Principio de Secuencia**
+
+Las instrucciones se ejecutan en orden, una después de otra, de arriba hacia abajo.
+
+2. **Principio de Selección (Control de Flujo Condicional)**
+
+Uso de estructuras como if, else, y switch para tomar decisiones.
+
+3. **Principio de Iteración (Bucles)**
+
+Repetición de bloques de código con estructuras como for, while, y do-while.
+
+
+4. **Principio de Modularidad**
+
+Dividir el programa en funciones o módulos pequeños, cada uno con una única responsabilidad.
+
+5. **Principio de "Un Solo Punto de Salida"**
+
+Cada función o bloque debe tener un único punto de salida (evitar múltiples return o break innecesarios).
+ 
+6. **Principio de No Uso de Saltos Incondicionales (goto)**
+
+Evitar saltos arbitrarios que rompan el flujo lineal del código.
+
+7. **Principio de Legibilidad**
+
+El código debe ser autoexplicativo, con nombres descriptivos y evitando anidaciones profundas.
+
+8. **Principio de Evitar Efectos Secundarios**
+
+Las funciones deben depender solo de sus parámetros y no modificar variables globales.
+
+# Ejemplo - Programación Estructural
+
+>  `Calcular el total de una lista de precios con descuentos y imprimir por consola el precio final`
+> 
+```javascript
+// ❌ Versión poco estructurada
+function sum(products) {
+    let total = 0;
+    let i = 0;
+    while (i < products.length) {
+        if (products[i].discount) {
+            total += products[i].price * 0.9;
+        } else {
+            total += products[i].price;
+        }
+        i++;
+        if (i === products.length) console.log("Total: $" + total);
+    }
+}
+calculate([{ price: 10, discount: true }, { price: 20, discount: false }])
+``` 
+* **Problemas clave:**
+
+**1. Modularidad**
+ 
+ - El código hace demasiado en un solo bloque:
+- Itera sobre un array
+- Calcula descuentos
+- Suma precios
+- Imprime el resultado
+
+**2. Un solo punto de salida**
+El `console.log` está dentro del bucle, lo que significa que:
+- La impresión ocurre en medio de la lógica de iteración
+- No hay un único lugar donde se maneje la salida
+
+**3. Legibilidad**
+- Uso de un contador manual (`i`) en lugar de un `for..f`
+- La condición `if (i === productos.length)` es redundante (el `while` ya controla el límite)
+- El nombre de la funcion `sum()` no describe lo que realmente se esta haciendo 
+
+```javascript
+// ✅ Versión estructurada
+function applyDiscount(price, hasDiscount) {
+    return hasDiscount ? price * 0.9 : price;
 }
 
-let resultado = sumar(5, 3);
-console.log(resultado);
+function calculateTotalPrice(products) {
+    let total = 0;
+    for (const product of products) {
+        total += applyDiscount(product.price, product.discount);
+    }
+    return total;
+}
 
+const total = calculateTotalPrice([{ price: 10, discount: true }, { price: 20, discount: false }]);
+console.log("Total: $" + total);
+``` 
+# Ejercicio  - Programación Estructural
+Se tiene una lista de animales y se pide crear un programa en JavaScript que convierta la edad humana en "años de mascota" para perros y gatos. Las reglas de conversión son las siguientes:
+Perros: 1 año humano equivale a 7 años de perro.
+Gatos: 1 año humano equivale a 5 años de gato.
+El programa debe recibir la edad humana y el tipo de mascota ("perro" o "gato"), calcular la edad correspondiente de cada animal de la lista y mostrar el resultado por consola .
 
+```
+let list = [
+  { name: 'Fido', age: 5, type: 'dog' },
+  { name: 'Lulu', age: 10, type: 'cat' },
+  { name: 'Max', age: 3, type: 'dog' },
+  { name: 'Milo', age: 2, type: 'cat' },
+  { name: 'Bella', age: 4, type: 'dog' }
+];
 
-**Ejercicio - Programación Estructural**
-
-
-Verificar número par o impar
-Escribe un programa en JavaScript que:
-Pida al usuario un número entero.
-
-
-Determine si el número es par o impar.
-
-
-Muestre el resultado en consola.
-
-
-
-
+```
