@@ -36,58 +36,44 @@
 // - The Hobbit by J.R.R. Tolkien
 
 class Book {
-  isBorrowed = false;
+    isBorrowed = false;
+    constructor(title, author) {
+        this.title = title;
+        this.author = author;
+    }
 
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
+    borrow() {
+        this.isBorrowed = true;
+    }
 
-  borrow() {
-    this.isBorrowed = true;
-  }
-
-  returnBook() {
-    this.isBorrowed = false;
-  }
+    returnBook() {
+        this.isBorrowed = false
+    }
 }
 
 class Library {
-  books = [];
-
-  constructor() {
-    // your code here
-  }
-
-  addBook(book) {
-    if (book instanceof Book) {
-      this.books.push(book); // composition: Library has Book objects
-    } else {
-      console.error("Only instances of Book can be added.");
+    books;
+    constructor() {
+        this.books = [];
     }
-  }
 
-  listAvailableBooks() {
-    const availableBooks = this.books.filter(book => book.isAvailable);
-    
-    if (availableBooks.length === 0) {
-      console.log("No available books at the moment.");
-    } else {
-      console.log("Available Books:");
-      for (const book of availableBooks) {
-        console.log(`- ${book.getInfo()}`);
-      }
+    addBook(book) {
+        this.books.push(book)
     }
-  }
+
+    listAvailableBooks() {
+        let availableBooks = this.books.filter(book => !book.isBorrowed)
+        console.log('Available Books:')
+        availableBooks.forEach(book => {
+            console.log(`- ${book.title} by ${book.author}`)
+        })
+    }
 }
-
 
 const book1 = new Book("1984", "George Orwell");
 const book2 = new Book("The Hobbit", "J.R.R. Tolkien");
-
 const library = new Library();
 library.addBook(book1);
 library.addBook(book2);
-
 book1.borrow();
 library.listAvailableBooks();
