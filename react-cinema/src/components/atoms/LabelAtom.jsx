@@ -1,7 +1,7 @@
 import "../styles/AtomStyles.css";
 
 const LabelAtom = ({ label }) => (
-    <p className="label-atom">{label}</p>
+    <span className="label-atom">{label}</span>
 );
 
 export default LabelAtom;

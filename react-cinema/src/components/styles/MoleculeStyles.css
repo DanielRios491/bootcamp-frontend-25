@@ -1,7 +1,10 @@
 .image-style{
     background-color: rgb(6, 128, 128);
+    width: 20px;
+    height: 20px;
 }
 
 .seat-molecule{
-    
+    display: flex;
+    flex-direction: column;
 }
