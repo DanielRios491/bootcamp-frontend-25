@@ -28,30 +28,53 @@ main{
 }
 
 .challenge-content{
-
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #04f1bf;
+    padding: 1rem;
+    background-color: #1c1464;
+    margin: 30px;
 }
 
 .first-part{
-
+    border: 3px solid #04f1bf;
+    padding: 20px 170px 20px 170px;
 }
 
 .second-part{
-
+    border: 5px solid transparent;
+    display: flex;
+    flex-direction: column;
 }
 
 .title-second-part{
-
+    border: 3px solid #04f1bf;
+    margin: 5px;
+    padding: 10px 150px 10px 150px;
 }
 
 .body-second-part{
-
+    border: 3px solid #d80488;
+    margin: 10px 5px 10px 5px;
+    padding: 120px 150px 120px 150px;
 }
 
 .third-part{
+    border: 3px solid #04f1bf;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    gap: 5px;
 }
 
 .body-third-part{ 
+    border: 2px solid #d80488;
+    margin: 5px 0 5px 0;
+    padding: 40px 140px 40px 140px;
 }
 
 .footer-third-part{
+    border: 2px solid #d80488;
+    margin: 5px 0 5px 0;
+    padding: 15px 140px 15px 140px;
 }
