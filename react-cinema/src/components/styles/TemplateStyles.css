@@ -1,0 +1,5 @@
+.example-template{
+    display: "flex"; 
+    flex-wrap: wrap;
+    background-color: aliceblue;
+}
