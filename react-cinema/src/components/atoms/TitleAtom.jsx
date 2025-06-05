@@ -1,5 +1,7 @@
-const LabelAtom = ({ label }) => (
-    <h2 className="label-atom">{label}</h2>
+import "../styles/AtomStyles.css";
+
+const TitleAtom = ({ title }) => (
+    <h2 className="title-atom">{title}</h2>
 );
 
-export default LabelAtom;
+export default TitleAtom;
