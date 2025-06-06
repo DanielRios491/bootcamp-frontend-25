@@ -1,11 +1,11 @@
 import './App.css'
-import ExampleTempalte from './components/templates/ExampleTemplate'
+import TestPage from './pages/TestPage'
 
 function App() {
 
   return (
     <>
-      <ExampleTempalte />
+      <TestPage />
     </>
   )
 }

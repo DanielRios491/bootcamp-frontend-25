@@ -1,4 +1,6 @@
 .organism-style{
+    position: relative;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
 }
