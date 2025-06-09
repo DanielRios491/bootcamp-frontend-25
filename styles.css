@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-body{
+body {
     margin: 0;
     background-color: #fff;
     display: flex;
@@ -10,86 +8,91 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-header{
+header {
     text-align: center;
     color: #04f1bf;
     background-color: #1c1464;
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 3rem;
     width: 100%;
 }
 
-p{
-    margin: 10px 0 30px 0;
-    font-size: 3em;
+main {
     flex: 1;
-}
-
-main{
-    aspect-ratio: 16 / 9;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
-.challenge-content{
+.challenge-content {
     display: flex;
     flex-direction: column;
-    border: 5px solid #04f1bf;
-    padding: 1rem;
     background-color: #1c1464;
-    margin: 30px;
+    border: 4px solid #04f1bf;
     aspect-ratio: 3 / 4;
+    padding: 1rem;
+    justify-content: space-between;
+    box-shadow: 0 0 10px #04f1bf;
+    width: 50%;
 }
 
-.first-part{
+.first-part {
     border: 3px solid #04f1bf;
+    padding: 0.5rem;
     text-align: center;
     font-weight: bold;
     color: #04f1bf;
+    background-color: #0d0a3a;
 }
 
-.second-part{
-    border: 5px solid transparent;
+.second-part {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-.title-second-part{
-    border: 3px solid #04f1bf;
-    margin: 5px;
+.title-second-part {
+    border: 2px solid #04f1bf;
+    padding: 0.5rem;
     text-align: center;
     color: #04f1bf;
+    background-color: #0d0a3a;
 }
 
-.body-second-part{
+.body-second-part {
     border: 3px solid #d80488;
     flex-grow: 1;
     background-color: #0d0a3a;
 }
 
 img{
-    width: 50%;
+    width: 100%;
 }
 
-.third-part{
-    border: 3px solid #04f1bf;
+.third-part {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    border: 2px solid #04f1bf;
+    gap: 0.5rem;
+    background-color: #0d0a3a;
+    padding: 0.5rem;
 }
 
-.body-third-part{ 
+.body-third-part {
     border: 2px solid #d80488;
-    margin: 5px 0 5px 0;
+    padding: 1rem;
+    background-color: #1c1464;
     color: white;
     font-size: 0.85rem;
     text-align: justify;
 }
 
-.footer-third-part{
+.footer-third-part {
     border: 2px solid #d80488;
-    margin: 5px 0 5px 0;
+    padding: 0.5rem;
+    background-color: #1c1464;
     color: #d80488;
     font-weight: bold;
     font-size: 0.9rem;
