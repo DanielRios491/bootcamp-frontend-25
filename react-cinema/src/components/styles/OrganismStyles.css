@@ -1,6 +1,7 @@
 .organism-style{
-    position: relative;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
+    display: grid;                           /* o flex */
+    grid-template-columns: repeat(5, auto);  /* 5 columnas para A–E */
+    gap: 1rem;                               /* espacio uniforme entre elementos */
+    justify-content: center;                 /* centra todo el grid */
+    padding: 1rem 0;
 }

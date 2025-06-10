@@ -1,11 +1,28 @@
 import SeatMolecule from "../molecules/SeatMolecule";
+import { useState, Fragment } from 'react';
+import '../styles/OrganismStyles.css';
 
-export default function CinemaOrganism() {
-    const Seat = ["A1","A2","A3","A4"]
+const ROWS = ['A','B','C','D','E'];
+const COLS = [0,1,2,3,4];
 
-    return(
+export default function SeatGrid() {
+    const [selected, setSelected] = useState(new Set());
+
+    return (
         <div className="organism-style">
-            {Seat.map((element, index) => <SeatMolecule label={element} key={index}/>)}
+        {ROWS.map(row => (
+            <Fragment key={row}>
+                {COLS.map(col => {
+                    const id = `${row}${col}`;
+                    return (
+                    <SeatMolecule
+                        key={id}
+                        label={id}
+                    />
+                    );
+                })}
+            </Fragment>
+        ))}
         </div>
     );
 }

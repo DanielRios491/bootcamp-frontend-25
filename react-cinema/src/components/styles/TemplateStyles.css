@@ -1,5 +1,5 @@
 .example-template{
-    display: "flex"; 
+    display: flex; 
     flex-wrap: wrap;
     background-color: aliceblue;
 }
