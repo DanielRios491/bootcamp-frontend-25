@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 export default function WeatherPage(params) {
-    const {textValue,setTextValue} = useState()
-    
-    const handleChange = (e) => {
+    const [textValue, setTextValue] = useState()
+
+    function handleChange(e) {
         console.log(e.target.value)
         setTextValue(e.target.value)
     }
