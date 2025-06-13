@@ -23,47 +23,47 @@ main {
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    /* max-height: 70vh; */
 }
 
 .challenge-content {
+    /* 2.25x3.25 */
     display: flex;
     flex-direction: column;
-    background-color: #1c1464;
-    border: 4px solid #04f1bf;
-    aspect-ratio: 3 / 4;
-    padding: 1rem;
-    justify-content: space-between;
-    box-shadow: 0 0 10px #04f1bf;
-    width: 50%;
+    border: 10px solid gray;
+    height: 100%;
+    aspect-ratio: 597 / 890;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    background-image: url('Texture.png'), url(Background.png); 
+    background-size: contain; 
+    background-repeat: no-repeat;
 }
 
 .first-part {
-    border: 3px solid #04f1bf;
+    border-top: 3px solid #ffffff;
+    border-left: 3px solid #ffffff;
+    border-bottom: 3px solid #000000;
+    border-right: 3px solid #000000;
     padding: 0.5rem;
     text-align: center;
-    font-weight: bold;
+    font-size: 100%;
     color: #04f1bf;
-    background-color: #0d0a3a;
 }
 
 .second-part {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0% 10% 5% 10%;
 }
 
 .title-second-part {
-    border: 2px solid #04f1bf;
-    padding: 0.5rem;
-    text-align: center;
+    padding: 0.2rem;
+    text-align: right;
     color: #04f1bf;
-    background-color: #0d0a3a;
 }
 
 .body-second-part {
     border: 3px solid #d80488;
-    flex-grow: 1;
     background-color: #0d0a3a;
 }
 
@@ -74,27 +74,22 @@ img{
 .third-part {
     display: flex;
     flex-direction: column;
-    border: 2px solid #04f1bf;
-    gap: 0.5rem;
-    background-color: #0d0a3a;
-    padding: 0.5rem;
+    border: 0.5rem solid rgb(119, 95, 95);
+    background-color: #fbf9f6;
+    padding: 3% 0 0 0;
 }
 
 .body-third-part {
-    border: 2px solid #d80488;
+    border-bottom: 2px solid black;
     padding: 1rem;
-    background-color: #1c1464;
-    color: white;
+    color: black;
     font-size: 0.85rem;
     text-align: justify;
 }
 
 .footer-third-part {
-    border: 2px solid #d80488;
     padding: 0.5rem;
-    background-color: #1c1464;
     color: #d80488;
-    font-weight: bold;
     font-size: 0.9rem;
     text-align: right;
 }
