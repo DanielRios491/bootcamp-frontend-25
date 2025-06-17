@@ -14,6 +14,11 @@ export default function WeatherPage() {
         setCityData(data || null);
     }
 
+    function clean(){
+        setCityData({})
+        setTextValue("")
+    }
+
     return (
         <div>
             <input
@@ -23,10 +28,11 @@ export default function WeatherPage() {
                 onChange={handleChange}
             />
             <button onClick={search}>Search</button>
+            <button onClick={clean}>Clean</button>
 
             {cityData && (
                 <>
-                <h2>Weather in {textValue}</h2>
+                <h2>{textValue}</h2>
                 {Object.entries(cityData).map(([index, value]) => (
                     <div key={index}>
                     <strong>{index}</strong>: {value}
