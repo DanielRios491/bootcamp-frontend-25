@@ -9,15 +9,27 @@ export default function WeatherPage(params) {
     }
 
     function search() {
-        console.log(mockWeatherData.find((elem, index) => index === value))
+        console.log(mockWeatherData);
+        
+        console.log(mockWeatherData[textValue])
     }
 
     return (
-        <>
+        <div>
             <input type="text" value={textValue} onChange={handleChange}/>
             <button onClick={search}>
                 Search
             </button>
-        </>
+            
+            {
+                (textValue === "") && <>
+                <label htmlFor="city">{ textValue }</label>
+                {mockWeatherData[textValue].map((elem, index) => {
+                    return (<div><span>{{index}}: </span><span>{{elem}}</span></div>);
+                })}
+                </>
+            }
+            
+        </div>
     );
 }
