@@ -1,35 +1,39 @@
 import { useState } from "react";
 import { mockWeatherData } from "../../../public/weather-places";
 
-export default function WeatherPage(params) {
-    const [textValue, setTextValue] = useState("")
+export default function WeatherPage() {
+    const [textValue, setTextValue] = useState("");
+    const [cityData, setCityData] = useState(null);
 
     function handleChange(e) {
-        setTextValue(e.target.value)
+        setTextValue(e.target.value);
     }
 
     function search() {
-        console.log(mockWeatherData);
-        
-        console.log(mockWeatherData[textValue])
+        const data = mockWeatherData[textValue];
+        setCityData(data || null);
     }
 
     return (
         <div>
-            <input type="text" value={textValue} onChange={handleChange}/>
-            <button onClick={search}>
-                Search
-            </button>
-            
-            {
-                (textValue === "") && <>
-                <label htmlFor="city">{ textValue }</label>
-                {mockWeatherData[textValue].map((elem, index) => {
-                    return (<div><span>{{index}}: </span><span>{{elem}}</span></div>);
-                })}
+            <input
+                type="text"
+                placeholder="Enter city name"
+                value={textValue}
+                onChange={handleChange}
+            />
+            <button onClick={search}>Search</button>
+
+            {cityData && (
+                <>
+                <h2>Weather in {textValue}</h2>
+                {Object.entries(cityData).map(([index, value]) => (
+                    <div key={index}>
+                    <strong>{index}</strong>: {value}
+                    </div>
+                ))}
                 </>
-            }
-            
+            )}
         </div>
     );
 }
