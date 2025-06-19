@@ -10,16 +10,21 @@ export default function ToDoOrganism() {
 
     const [ toDoList, setToDoList ] = useState({})
 
-    function doneToDo () {
-
+    function doneToDo (id) {
+        console.log(id);
+        setToDoList(prev =>
+            prev.map(item =>
+                item.id === id ? { ...item, done: !item.done } : item
+            )
+        );
     }
 
-    function editToDo () {
-
+    function editToDo (id) {
+        console.log(id)
     }
 
-    function deleteToDO () {
-
+    function deleteToDO (id) {
+        console.log(id)
     }
 
     return (
@@ -29,11 +34,11 @@ export default function ToDoOrganism() {
                     return (
                         <div key={element.id} >
                             <ToDoMolecule 
-                                onChangeBox={doneToDo(element.id)} 
+                                onChangeBox={() => doneToDo(element.id)} 
                                 selected={element.done} 
                                 toDoText={element.name} 
-                                editToDoOnChange={editToDo(element.id)} 
-                                deleteOnChange={deleteToDO(element.id)} 
+                                editToDoOnChange={() => editToDo(element.id)} 
+                                deleteOnChange={() => deleteToDO(element.id)} 
                             />
                         </div>
                     );

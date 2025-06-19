@@ -6,9 +6,9 @@ export default function ToDoMolecule({onChangeBox, selected, toDoText, editOnCha
     return (
         <div>
             <CheckboxAtom onChange={ onChangeBox } selected={ selected } />
-            <ToDoTextAtom>{ toDoText }</ToDoTextAtom>
-            <ButtonAtom onChange={ editOnChange } >Edit</ButtonAtom>
-            <ButtonAtom onChange={ deleteOnChange } >Delete</ButtonAtom>
+            <ToDoTextAtom toDoText={toDoText} />
+            <ButtonAtom onClick={ editOnChange } >Edit</ButtonAtom>
+            <ButtonAtom onClick={ deleteOnChange } >Delete</ButtonAtom>
         </div>
     );
 }
