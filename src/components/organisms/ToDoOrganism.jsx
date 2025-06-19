@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import ToDoMolecule from '../molecules/ToDoMolecule'
+import ToDoMolecule from '../molecules/ToDoMolecule';
+import NewToDoMolecule from '../molecules/ToDoMolecule';
 
 export default function ToDoOrganism() {
 
@@ -19,18 +20,28 @@ export default function ToDoOrganism() {
     }
 
     function editToDo(id) {
-        console.log("edit");
+        const item = toDoList.find(i => i.id === id);
+        
+        if (item.done) {
+            alert("This todo is already done. You can’t edit it.");
+            return;  
+        }
+        
         setToDoList(prev =>
             prev.map(item =>
-                item.id === id && !item.done
+            item.id === id
                 ? { ...item, editable: !item.editable }
                 : item
             )
         );
     }
 
-    function updateText(params) {
-        
+    function updateText(id, text) {
+        setToDoList(prev =>
+            prev.map(item =>
+                item.id === id ? { ...item, name: text } : item
+            )
+        );
     }
 
     function deleteToDO (id) {
@@ -43,6 +54,7 @@ export default function ToDoOrganism() {
 
     return (
         <div>
+            <NewToDoMolecule />
             {
                 toDoList.map((element, index) => {
                     return (
