@@ -1,4 +1,4 @@
-export default function ToDoText({toDoText, readOnly, updateText}) {
+export default function ToDoTextAtom({toDoText, readOnly, updateText}) {
     if (readOnly) {
         return <span>{toDoText}</span>;
     }

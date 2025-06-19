@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ToDoMolecule from '../molecules/ToDoMolecule';
-import NewToDoMolecule from '../molecules/ToDoMolecule';
+import NewToDoMolecule from '../molecules/NewToDoMolecule';
 
 export default function ToDoOrganism() {
 
@@ -10,6 +10,7 @@ export default function ToDoOrganism() {
     ];
 
     const [ toDoList, setToDoList ] = useState(toDoListArray)
+    const [ newToDo, setNewToDo ] = useState("");
 
     function doneToDo (id) {
         setToDoList(prev =>
@@ -52,9 +53,25 @@ export default function ToDoOrganism() {
         )
     }
 
+    function addToDo(){
+        if (!newToDo.trim()) return;
+        const next = {
+            id: Date.now(),
+            name: newToDo.trim(),
+            done: false,
+            editable: false
+        };
+        setToDoList(prev => [...prev, next]);
+        setNewToDo('');
+    }
+
     return (
         <div>
-            <NewToDoMolecule />
+            <NewToDoMolecule 
+                toDoText={newToDo} 
+                updateText={setNewToDo} 
+                addToDo={() => addToDo()} 
+            />
             {
                 toDoList.map((element, index) => {
                     return (
