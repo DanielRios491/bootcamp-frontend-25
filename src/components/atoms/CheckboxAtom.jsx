@@ -3,7 +3,7 @@ export default function CheckboxAtom({ onChange, selected }) {
         <input
             type="checkbox"
             onChange={ onChange }
-            selected={ selected }
+            checked={ selected }
         />
     );
 }

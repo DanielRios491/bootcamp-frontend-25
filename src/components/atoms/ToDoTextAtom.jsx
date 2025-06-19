@@ -1,3 +1,13 @@
-export default function ToDoText({toDoText}) {
-    return <span>{toDoText}</span>
+export default function ToDoText({toDoText, readOnly, updateText}) {
+    if (readOnly) {
+        return <span>{toDoText}</span>;
+    }
+
+    return (
+        <input
+            type="text"
+            value={toDoText}
+            onChange={e => updateText(e.target.value)}
+        />
+    );
 }

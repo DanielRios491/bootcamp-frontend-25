@@ -4,14 +4,13 @@ import ToDoMolecule from '../molecules/ToDoMolecule'
 export default function ToDoOrganism() {
 
     const toDoListArray = [
-        { id: 1, name: "Visit Kafka Museum", done: true},
-        { id: 2, name: "Watch Wall pic", done: false },
+        { id: 1, name: "Visit Kafka Museum", done: true, editable: false},
+        { id: 2, name: "Watch Wall pic", done: false, editable: false },
     ];
 
-    const [ toDoList, setToDoList ] = useState({})
+    const [ toDoList, setToDoList ] = useState(toDoListArray)
 
     function doneToDo (id) {
-        console.log(id);
         setToDoList(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, done: !item.done } : item
@@ -19,27 +18,45 @@ export default function ToDoOrganism() {
         );
     }
 
-    function editToDo (id) {
-        console.log(id)
+    function editToDo(id) {
+        console.log("edit");
+        setToDoList(prev =>
+            prev.map(item =>
+                item.id === id && !item.done
+                ? { ...item, editable: !item.editable }
+                : item
+            )
+        );
+    }
+
+    function updateText(params) {
+        
     }
 
     function deleteToDO (id) {
-        console.log(id)
+        setToDoList(prev =>
+            prev.filter( item =>
+                item.id !== id
+            )
+        )
     }
 
     return (
         <div>
             {
-                toDoListArray.map((element, index) => {
+                toDoList.map((element, index) => {
                     return (
-                        <div key={element.id} >
+                        <div key={index} >
                             <ToDoMolecule 
                                 onChangeBox={() => doneToDo(element.id)} 
                                 selected={element.done} 
                                 toDoText={element.name} 
-                                editToDoOnChange={() => editToDo(element.id)} 
-                                deleteOnChange={() => deleteToDO(element.id)} 
+                                readOnly={!element.editable}
+                                updateText={(text) => updateText(element.id, text)}
+                                editClick={() => editToDo(element.id)} 
+                                deleteClick={() => deleteToDO(element.id)} 
                             />
+                            <span>{ `${element.editable}` }</span>
                         </div>
                     );
                 })
