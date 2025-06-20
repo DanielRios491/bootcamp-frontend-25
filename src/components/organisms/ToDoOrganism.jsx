@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import ToDoMolecule from '../molecules/ToDoMolecule';
 import NewToDoMolecule from '../molecules/NewToDoMolecule';
 
@@ -9,15 +9,52 @@ export default function ToDoOrganism() {
         { id: 2, name: "Watch Wall pic", done: false, editable: false },
     ];
 
-    const [ toDoList, setToDoList ] = useState(toDoListArray)
+    // const [ toDoList, setToDoList ] = useState(toDoListArray)
+    const [ toDoList,  dispatch ] = useReducer(toDoReducer, toDoListArray)
     const [ newToDo, setNewToDo ] = useState("");
 
+    function toDoReducer(state, action) {
+        switch (action.type) {
+            case 'add':
+                return [...state, action.payload]
+                break;
+            case 'editCheckBox':
+                return state.map(item =>
+                        item.id === action.payload.id ? { ...item, done: !item.done } : item
+                    )
+                break;
+            case 'editEditable':
+                return state.map(item =>
+                        item.id === action.payload
+                        ? { ...item, editable: !item.editable }
+                        : item
+                    )
+                break;
+            case 'update':
+                return state.map(todo =>
+                        todo.id === action.payload.id ? { ...todo, name: action.payload.text } : todo
+                    )
+                break;
+            case 'delete':
+                return state.filter( item =>
+                        item.id !== id
+                    )
+                break;
+            default:
+                break;
+        }
+    }
+
     function doneToDo (id) {
-        setToDoList(prev =>
+        /* setToDoList(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, done: !item.done } : item
             )
-        );
+        ); */
+        dispatch({
+            type: 'editCheckBox',
+            payload: id
+        });
     }
 
     function editToDo(id) {
@@ -28,29 +65,41 @@ export default function ToDoOrganism() {
             return;  
         }
         
-        setToDoList(prev =>
+        /* setToDoList(prev =>
             prev.map(item =>
             item.id === id
                 ? { ...item, editable: !item.editable }
                 : item
             )
-        );
+        ); */
+        dispatch({
+            type: 'editEditable',
+            payload: id
+        });
     }
 
     function updateText(id, text) {
-        setToDoList(prev =>
+        /* setToDoList(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, name: text } : item
             )
-        );
+        ); */
+        dispatch({
+            type: 'update',
+            payload: {id, text}
+        });
     }
 
     function deleteToDO (id) {
-        setToDoList(prev =>
+        /* setToDoList(prev =>
             prev.filter( item =>
                 item.id !== id
             )
-        )
+        ) */
+        dispatch({
+            type: 'delete',
+            payload: id
+        });
     }
 
     function addToDo(){
@@ -61,7 +110,11 @@ export default function ToDoOrganism() {
             done: false,
             editable: false
         };
-        setToDoList(prev => [...prev, next]);
+        /* setToDoList(prev => [...prev, next]); */
+        dispatch({
+            type: "add",
+            payload: next
+        });
         setNewToDo('');
     }
 
