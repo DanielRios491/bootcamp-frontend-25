@@ -4,42 +4,72 @@ import NewToDoMolecule from '../molecules/NewToDoMolecule';
 
 export default function ToDoOrganism() {
 
-    const toDoListArray = [
-        { id: 1, name: "Visit Kafka Museum", done: true, editable: false},
-        { id: 2, name: "Watch Wall pic", done: false, editable: false },
-    ];
+    const initialState = {
+        toDoListArray : [
+            { id: 1, name: "Visit Kafka Museum", done: true, editable: false},
+            { id: 2, name: "Watch Wall pic", done: false, editable: false },
+        ],
+        newToDo: ""
+    }
 
     // const [ toDoList, setToDoList ] = useState(toDoListArray)
-    const [ toDoList,  dispatch ] = useReducer(toDoReducer, toDoListArray)
+    const [ toDoList,  dispatch ] = useReducer(toDoReducer, initialState)
     const [ newToDo, setNewToDo ] = useState("");
 
     function toDoReducer(state, action) {
         switch (action.type) {
             case 'add':
-                return [...state, action.payload]
+                const text = state.newToDo.trim();
+                if (!text) return state;
+                return {
+                    toDoListArray: [
+                        ...state.toDoListArray,
+                        { 
+                            id: Date.now(),
+                            name: text,
+                            done: false,
+                            editable: false
+                        }
+                    ],
+                    newToDo: ""
+                };
                 break;
             case 'editCheckBox':
-                return state.map(item =>
+                return state.toDoListArray.map(item =>
                         item.id === action.payload.id ? { ...item, done: !item.done } : item
                     )
                 break;
             case 'editEditable':
-                return state.map(item =>
+                return state.toDoListArray.map(item =>
                         item.id === action.payload
                         ? { ...item, editable: !item.editable }
                         : item
                     )
                 break;
             case 'update':
-                return state.map(todo =>
+                return state.toDoListArray.map(todo =>
                         todo.id === action.payload.id ? { ...todo, name: action.payload.text } : todo
                     )
                 break;
             case 'delete':
-                return state.filter( item =>
-                        item.id !== id
+                return {
+                    ...state,
+                    toDoListArray: state.toDoListArray.filter(item =>
+                        item.id !== action.payload
                     )
+                }
                 break;
+            case 'resetNewtodo':
+                return {
+                    ...state,
+                    newToDo: ""
+                };
+                break;
+            case 'changeInput':
+                return {
+                    ...state,
+                    newToDo: action.payload
+                };
             default:
                 break;
         }
@@ -58,7 +88,7 @@ export default function ToDoOrganism() {
     }
 
     function editToDo(id) {
-        const item = toDoList.find(i => i.id === id);
+        const item = toDoList.toDoListArray.find(i => i.id === id);
         
         if (item.done) {
             alert("This todo is already done. You can’t edit it.");
@@ -103,30 +133,29 @@ export default function ToDoOrganism() {
     }
 
     function addToDo(){
-        if (!newToDo.trim()) return;
-        const next = {
-            id: Date.now(),
-            name: newToDo.trim(),
-            done: false,
-            editable: false
-        };
         /* setToDoList(prev => [...prev, next]); */
         dispatch({
             type: "add",
-            payload: next
         });
-        setNewToDo('');
+        /* setNewToDo(''); */
+    }
+
+    function SetNewToDo (value) {
+        dispatch({
+            type: 'changeInput',
+            payload: value
+        })
     }
 
     return (
         <div>
             <NewToDoMolecule 
-                toDoText={newToDo} 
-                updateText={setNewToDo} 
+                toDoText={toDoList.newToDo} 
+                updateText={(e) => SetNewToDo(e)} 
                 addToDo={() => addToDo()} 
             />
             {
-                toDoList.map((element, index) => {
+                toDoList.toDoListArray.map((element, index) => {
                     return (
                         <div key={index} >
                             <ToDoMolecule 
