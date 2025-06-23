@@ -11,24 +11,14 @@
  * Also is important move component and context to a separate files.
  * Submit your code once it is complete.
  */
-
-const languages = ['JavaScript', 'Python'];
+import { FavoriteLanguageProvider } from './providers/LanguageProvider';
+import MainSection from './components/pages/ExamplePage';
 
 export default function App() {
- return (
-   <>
-     <MainSection />
-   </>
- );
-}
-
-
-function MainSection() {
- return (
-   <div>
-     <p id="favoriteLanguage">favorite programing language: {languages[0]}</p>
-     <button id="changeFavorite">toggle language</button>
-   </div>
- )
+  return (
+    <FavoriteLanguageProvider>
+      <MainSection />
+    </FavoriteLanguageProvider>
+  );
 }
 

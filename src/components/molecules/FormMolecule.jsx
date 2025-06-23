@@ -1,7 +1,10 @@
-export default function FromMolecules() {
+import { ButtonAtom } from './atoms/ButtonAtom';
+import { ParagraphAtom } from './atoms/ParagraphAtom';
+
+export default function FormMolecules() {
     <div>
-        <p id="favoriteLanguage">favorite programing language: {languages[0]}</p>
-        <button id="changeFavorite">toggle language</button>
+        <ButtonAtom />
+        <ParagraphAtom />
     </div>
     
 }
