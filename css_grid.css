@@ -1,0 +1,64 @@
+.outer-grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.outer-item {
+    background: #eef;
+    padding: 0.5rem;
+}
+
+.inner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    background: #fee;
+    padding: 0.5rem;
+}
+
+.inner-item {
+    background: #ffe;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.level-3-left{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.item{
+
+}
+
+.item.a { 
+    
+}
+.item.b { 
+    
+}
+.item.c { 
+    
+}
+.item.d { 
+
+}
+.item.e { 
+    
+}
+.item.f { 
+
+}
+
+.level-3-center{
+
+}
+
+.level-3-right{
+
+}
+
