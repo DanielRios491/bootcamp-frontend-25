@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import ButtomAtom from './components/atoms/ButtomAtom';
 import './App.css'
 
 function App() {
@@ -31,9 +32,9 @@ function App() {
     <div>
       <h1>Timer</h1>
       <h6><span>{ countMin }</span> min <span>{ countSec }</span> secs</h6>
-      <button onClick={() => {setStart(true)}}>Start</button>
-      <button onClick={() => {setStart(false)}}>Stop</button>
-      <button onClick={() => {setCountSec(0); setCountMin(0); setStart(false)}}>Reset</button>
+      <ButtomAtom color={"green"} onClick={() => {setStart(true)}}>Start</ButtomAtom>
+      <ButtomAtom color={"yellow"} onClick={() => {setStart(false)}}>Stop</ButtomAtom>
+      <ButtomAtom color={"red"} onClick={() => {setCountSec(0); setCountMin(0); setStart(false)}}>Reset</ButtomAtom>
     </div>
   )
 }

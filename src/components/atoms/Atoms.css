@@ -1,3 +1,15 @@
 .button-atom{
-    
+    color: black;
+}
+
+.button-atom.green{
+    background-color: green;
+}
+
+.button-atom.yellow{
+    background-color: yellow;
+}
+
+.button-atom.red{
+    background-color: red;
 }
