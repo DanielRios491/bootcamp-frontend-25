@@ -7,22 +7,33 @@ function App() {
   const [ start, setStart ] = useState(false)
 
   useEffect(() => {
-    if (start) {
-      if (countSec < 60) {
-        setCountMin(prev => prev + 1)
-        setCountSec(0)
+    const interval = setInterval(() => {
+      if (start) {
+        setCountSec(prev => {
+          if (prev+1 === 60) {
+            return 0;
+          }
+          return prev+1;
+        })
       }
-      setInterval(() => {setCountSec(prev => prev+1)}, 1000)
-    }
+    }, 1000)
+
+    return () => clearInterval(interval)
   }, [start]);
+
+  useEffect(() => {
+    if (countSec === 0 && start) { 
+      setCountMin(prevMin => prevMin + 1)
+    }
+  },[countSec])
 
   return (
     <div>
       <h1>Timer</h1>
-      <h6><span>{ countMin }</span>min <span>{ countSec }</span>secs</h6>
+      <h6><span>{ countMin }</span> min <span>{ countSec }</span> secs</h6>
       <button onClick={() => {setStart(true)}}>Start</button>
       <button onClick={() => {setStart(false)}}>Stop</button>
-      <button onClick={() => {setCountSec(0); setCountMin(0)}}>Reset</button>
+      <button onClick={() => {setCountSec(0); setCountMin(0); setStart(false)}}>Reset</button>
     </div>
   )
 }
