@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import styles from './Checkout.module.css';
 import { LoadingIcon } from './Icons';
+import { getProducts, Product as ProductType } from './dataService';
 // import { getProducts } from './dataService';
 
 // You are provided with an incomplete <Checkout /> component.
@@ -20,20 +22,45 @@ import { LoadingIcon } from './Icons';
 //  - The total should reflect any discount that has been applied
 //  - All dollar amounts should be displayed to 2 decimal places
 
+type ProductDataType = { 
+  id: number;
+  name: string;
+  availableCount: number;
+  price: number;
+  orderedQuantity: number;
+  total: number;
+}
 
+const Product = ({id, name, availableCount, price, orderedQuantity, total} : ProductDataType) => {
+  const [orderedQ, setOrderedQ] = useState(orderedQuantity)
+  const [totalS, setTotalS] = useState(total)
 
-const Product = ({ id, name, availableCount, price, orderedQuantity, total }) => {
+  const handleAddProduct = () => {
+    console.log("adding")
+    if (orderedQ == availableCount) {
+      return;
+    }
+    setOrderedQ(prev => prev++)
+  }
+
+  const handleLessProduct = () => {
+    if (orderedQ == 0) {
+      return;
+    }
+    setOrderedQ(prev => prev--)
+  }
+
   return (
     <tr>
       <td>{id}</td>
       <td>{name}</td>
       <td>{availableCount}</td>
       <td>${price}</td>
-      <td>{orderedQuantity}</td>   
-      <td>${total}</td>
+      <td>{orderedQ}</td>   
+      <td>${totalS}</td>
       <td>
-        <button className={styles.actionButton}>+</button>
-        <button className={styles.actionButton}>-</button>
+        <button className={styles.actionButton} onClick={() => handleAddProduct()}>+</button>
+        <button className={styles.actionButton} onClick={() => handleLessProduct()}>-</button>
       </td>
     </tr>    
   );
@@ -41,6 +68,18 @@ const Product = ({ id, name, availableCount, price, orderedQuantity, total }) =>
 
 
 const Checkout = () => {
+
+  const [products, setProducts] = useState<ProductType[]>([]);
+  useEffect( () => {
+
+    async function getData() {
+      const result = await getProducts();
+    
+      setProducts(result)
+    }
+    getData()
+  }, [])
+
   return (
     <div>
       <header className={styles.header}>        
@@ -63,6 +102,17 @@ const Checkout = () => {
           </thead>
           <tbody>
           {/* Products should be rendered here */}
+          {products && products.map((product, index) => {
+            const id = product.id;
+            const name = product.name;
+            const availableCount = product.availableCount;
+            const price = product.price;
+            const orderedQuantity = 0;
+            const total = 0;
+            return (
+              <Product key={index} id={id} name={name} availableCount={availableCount} price={price} orderedQuantity={orderedQuantity} total={total} />
+            );
+          })}
           </tbody>
         </table>
         <h2>Order summary</h2>
